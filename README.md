@@ -1,3 +1,3 @@
-<p align="center><img src="ahmath.png" alt="ahmath-logo" /></p>
+<p align="center><img src="master/ahmath.png" alt="ahmath-logo" /></p>
 <hr>
-## Simple and easy differential equations tools.<h2/>
+<h3>Simple and easy differential equations tools.<h3/>
