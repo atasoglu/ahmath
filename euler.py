@@ -8,6 +8,17 @@ def euler(dy, yi, h):
 
 	return y
 
+def euler_f(f, xi, yi, h, iteration): # alternative
+
+	y = [] # y = [y0, y1, y2, ... , yn]
+
+	for i in range(iteration):
+		y = y + [yi + f(xi) * h]
+		yi = y[-1]
+		xi += h
+	
+	return y
+
 import math
 import matplotlib.pyplot as plt
 
