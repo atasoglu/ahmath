@@ -1,37 +1,47 @@
 
-
+def rk4(func, xi, yi, h, Iter):
+    y = [yi]
+    for i in range(1, Iter):
+        k1 = h * func(xi, yi)
+        k2 = h * func(xi + h/2.0, yi + k1/2.0)
+        k3 = h * func(xi + h/2.0, yi + k2/2.0)
+        k4 = h * func(xi + h, yi + k3)
+        y.append(yi + (k1 + 2*k2 + 2*k3 + k4)/6.0)
+        xi += h
+        yi = y[-1]
+    return y 
 
 def runge_kutta(f, xi, yi, h, iteration):
 
-	y = [] # y = [y0, y1, y2, ... , yn]
+    y = [yi] # y = [y0, y1, y2, ... , yn]
 
-	for i in range(iteration):
-		k1 = h * f(xi, yi)
-		k2 = 2 * h * f(xi + 0.5*h, yi + 0.5*k1)
-		k3 = 2 * h * f(xi + 0.5*h, yi + 0.5*k2)
-		k4 = h * f(xi + h, yi + k3)
+    for i in range(1, iteration):
+        k1 = h * f(xi, yi)
+        k2 = h * f(xi + 0.5*h, yi + 0.5*k1)
+        k3 = h * f(xi + 0.5*h, yi + 0.5*k2)
+        k4 = h * f(xi + h, yi + k3)
 
-		y = y + [yi + (k1 + k2 + k3 + k4)/6]
+        y = y + [yi + (k1 + 2*k2 + 2*k3 + k4)/6]
 
-		xi += h
-		yi = y[-1]
+        xi += h
+        yi = y[-1]
 
-	return y
+    return y
 
 import math
 import matplotlib.pyplot as plt
 
-step = 0.1
+step = 0.01
 interval = 3
 ITER = math.floor(interval/step)
 x0 = 0
 y0 = 1
 
 def f(x):
-	return math.exp((x**2)/2)
+    return math.exp((x**2)/2)
 
 def dydx(x, y):
-	return x*y
+    return x*y
 
 x = [i*step for i in range(ITER)]
 y = [f(xi) for xi in x]
@@ -49,7 +59,7 @@ plt.show()
 
 err = []
 for i in range(ITER):
-	err = err + [abs(y[i] - y_rk[i])]
+    err = err + [abs(y[i] - y_rk[i])]
 
 plt.plot(err, 'r')
 
