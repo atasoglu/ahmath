@@ -1,16 +1,3 @@
-
-def rk4(func, xi, yi, h, Iter):
-    y = [yi]
-    for i in range(1, Iter):
-        k1 = h * func(xi, yi)
-        k2 = h * func(xi + h/2.0, yi + k1/2.0)
-        k3 = h * func(xi + h/2.0, yi + k2/2.0)
-        k4 = h * func(xi + h, yi + k3)
-        y.append(yi + (k1 + 2*k2 + 2*k3 + k4)/6.0)
-        xi += h
-        yi = y[-1]
-    return y 
-
 def runge_kutta(f, xi, yi, h, iteration):
 
     y = [yi] # y = [y0, y1, y2, ... , yn]
