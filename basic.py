@@ -39,7 +39,7 @@ def deg_to_rad(degree):
 
 def rad_to_deg(radian):
     # from radian to degree
-    if type(rad) is int or type(rad) is float:
+    if type(radian) is int or type(radian) is float:
         return (180 / pi) * radian
     elif type(radian) is list:
         return [rad_to_deg(rad) for rad in radian]
@@ -61,11 +61,11 @@ def arange(start, end, step):
 def arangef(start, end, step, fpoint = 2): # f for floating points
     if end > start:
         res = [start]
-        next_value = round(start + step, 2)
+        next_value = round(start + step, fpoint)
         while next_value < end:
             res.append(next_value)
             start += step
-            next_value = round(start + step, 2)
+            next_value = round(start + step, fpoint)
         return res
     else:
         return None
